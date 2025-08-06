@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Map Embed</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #address-display {
+      font-size: 18px;
+      color: #666;
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 4px;
+    }
+
+    #embed-map {
+      margin-top: 20px;
+    }
+
+    iframe {
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Map Embed</h1>
+    <div id="address-display">Loading...</div>
+    <div id="embed-map"></div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const addressFromUrl = urlParams.get("address") || "New York, NY";
+      const defaultAddress = "New York, NY";
+
+      // Update the address display
+      const addressDisplay = document.getElementById("address-display");
+      addressDisplay.textContent = addressFromUrl;
+
+      // Create the map iframe
+      const mapIframe = document.createElement("iframe");
+      mapIframe.id = "map-iframe";
+      mapIframe.src = `https://www.google.com/maps/embed/v1/place?key=GOOGLE_API_KEY_PLACEHOLDER&q=${encodeURIComponent(addressFromUrl)}`;
+      mapIframe.width = "100%";
+      mapIframe.height = "600px";
+      mapIframe.style.border = "1px solid #ccc";
+      mapIframe.style.borderRadius = "4px";
+
+      // Append to the map container
+      document.getElementById("embed-map").appendChild(mapIframe);
+
+      console.log("Map script executed with address:", addressFromUrl);
+    });
+  </script>
+</body>
+
+</html>

@@ -1,68 +1,70 @@
-# Google Maps Embed
+# Map Embed
 
-A simple Google Maps embed page built with Gatsby and deployed to GitHub Pages.
+A simple GitHub Pages project that embeds Google Maps with address support.
 
 ## Features
 
-- Simple Google Maps embed using the Google Maps Embed API
-- Environment variable support for API key
-- GitHub Pages deployment via GitHub Actions
-- No external CSS frameworks - pure HTML/CSS
+- Google Maps embed with address parameter support
+- Clean, responsive design
+- GitHub Actions build process that injects API keys
 
 ## Setup
 
-1. Clone this repository
-2. Install dependencies:
+1. **Fork or clone this repository**
 
+2. **Add your Google Maps API key to GitHub Secrets:**
+   - Go to your repository settings
+   - Navigate to "Secrets and variables" → "Actions"
+   - Add a new repository secret named `GOOGLE_API_KEY`
+   - Set the value to your Google Maps API key
+
+3. **Enable GitHub Pages:**
+   - Go to repository settings
+   - Navigate to "Pages"
+   - Set source to "Deploy from a branch"
+   - Select the `gh-pages` branch
+   - Save
+
+## Usage
+
+The page accepts an `address` parameter in the URL:
+
+```
+https://your-username.github.io/your-repo/?address=123 Main St, New York, NY
+```
+
+If no address is provided, it defaults to "New York, NY".
+
+## How it works
+
+1. The GitHub Actions workflow runs on every push to main
+2. It creates a `.env.local` file with your API key from GitHub Secrets
+3. The build step replaces `GOOGLE_API_KEY_PLACEHOLDER` in `index.html` with your actual API key
+4. The processed `index.html` is deployed to the `gh-pages` branch
+
+## Local Development
+
+1. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. Set up your Google Maps API key:
+2. **Set up your API key:**
+   - Edit `.env.local` and replace `your_google_maps_api_key_here` with your actual Google Maps API key
 
-   - Get a Google Maps API key from the [Google Cloud Console](https://console.cloud.google.com/)
-   - Enable the "Maps Embed API"
-   - Add the API key as a GitHub secret named `GOOGLE_API_KEY`
+3. **Start the local server:**
+   ```bash
+   npm run dev
+   ```
 
-4. Update the site URL in `gatsby-config.js` to match your GitHub Pages URL
+4. **Visit `http://localhost:8002`** in your browser
 
-## Development
+The local server will automatically load your API key from `.env.local` and inject it into the HTML before serving.
 
-```bash
-npm run develop
-```
+## Files
 
-## Testing
-
-The project includes Playwright tests to verify the query parameter functionality:
-
-```bash
-# Run tests with local environment variables
-npm run test:e2e:local
-
-# Run tests with UI (for debugging)
-npm run test:e2e:ui
-
-# Run tests in debug mode
-npm run test:e2e:debug
-```
-
-**Note**: The `test:e2e:local` command uses your `.env.local` file to load the Google Maps API key securely.
-
-## Deployment
-
-The app automatically deploys to GitHub Pages when you push to the main branch. The deployment workflow:
-
-1. Builds the Gatsby site
-2. Uses the `GATSBY_GOOGLE_API_KEY` environment variable from GitHub secrets
-3. Deploys to GitHub Pages
-
-## Configuration
-
-- Change the default address in `src/pages/index.js`
-- Update the site metadata in `gatsby-config.js`
-- Modify the map styling in the component
-
-## Environment Variables
-
-- `GATSBY_GOOGLE_API_KEY`: Your Google Maps API key (required)
+- `index.html` - The main page with embedded map
+- `server.js` - Local development server
+- `.github/workflows/deploy.yml` - GitHub Actions workflow
+- `package.json` - Project configuration
+- `.env.local` - Local environment variables (create this file with your API key)

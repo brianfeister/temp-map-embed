@@ -1,43 +1,22 @@
 {
-  "name": "temp-map-embed",
-  "private": true,
-  "description": "A simple Google Maps embed page built with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "dependencies": {
-    "gatsby": "^5.14.1",
-    "gatsby-plugin-manifest": "^5.14.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.54.2",
-    "dotenv-cli": "^10.0.0",
-    "playwright": "^1.54.2",
-    "prettier": "^2.8.8"
+  "name": "map-embed",
+  "version": "1.0.0",
+  "description": "Simple map embed with Google Maps API",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Build step completed'",
+    "start": "node server.js",
+    "dev": "dotenv -e .env.local -- node server.js",
+    "test": "echo 'No tests specified'"
   },
   "keywords": [
-    "gatsby"
+    "map",
+    "embed",
+    "google-maps"
   ],
-  "license": "0BSD",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
-    "start": "gatsby develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui",
-    "test:e2e:debug": "playwright test --debug",
-    "test:e2e:local": "dotenv -e .env.local playwright test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "dotenv-cli": "^10.0.0"
   }
 }
