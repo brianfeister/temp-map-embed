@@ -32,6 +32,23 @@ A simple Google Maps embed page built with Gatsby and deployed to GitHub Pages.
 npm run develop
 ```
 
+## Testing
+
+The project includes Playwright tests to verify the query parameter functionality:
+
+```bash
+# Run tests with local environment variables
+npm run test:e2e:local
+
+# Run tests with UI (for debugging)
+npm run test:e2e:ui
+
+# Run tests in debug mode
+npm run test:e2e:debug
+```
+
+**Note**: The `test:e2e:local` command uses your `.env.local` file to load the Google Maps API key securely.
+
 ## Deployment
 
 The app automatically deploys to GitHub Pages when you push to the main branch. The deployment workflow:

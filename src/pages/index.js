@@ -35,34 +35,6 @@ const IndexPage = () => {
           />
         </div>
       </section>
-
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-          (function() {
-            // Get address from URL query parameter
-            const urlParams = new URLSearchParams(window.location.search);
-            const address = urlParams.get('address') || '${defaultAddress}';
-
-            // Update the display
-            const addressDisplay = document.getElementById('address-display');
-            if (addressDisplay) {
-              addressDisplay.textContent = address;
-            }
-
-            // Update the iframe src with the API key from the existing iframe
-            const iframe = document.getElementById('map-iframe');
-            if (iframe) {
-              const currentSrc = iframe.src;
-              const apiKey = currentSrc.match(/key=([^&]+)/)?.[1] || '';
-              if (apiKey && apiKey !== 'undefined' && apiKey !== 'YOUR_API_KEY_HERE') {
-                iframe.src = 'https://www.google.com/maps/embed/v1/place?key=' + apiKey + '&q=' + encodeURIComponent(address);
-              }
-            }
-          })();
-        `,
-        }}
-      />
     </Layout>
   )
 }
